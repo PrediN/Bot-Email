@@ -18,12 +18,16 @@ destinatario = str(input("Digite o e-mail do destinatário: ")).strip().lower()
 assunto = str(input("Digite o assunto: ")).strip()
 mensagem = str(input("Digite a mensagem: ")).strip()
 
+# Construindo o e-mail como uma string
+mensagem = f"From: {email}\nTo: {destinatario}\nSubject: {assunto}\n\n{mensagem}"
 
 # Envio de e-mail
 
 with smtplib.SMTP("smtp.gmail.com", 587) as smtp: # Servidor SMTP do Gmail e o with serve para fechar a conexão automaticamente
     smtp.starttls() # Iniciando a conexão
-    smtp.login(email, senha) # Fazendo login
-    corpo_email = f"Assunto: {assunto}\n\n{mensagem}" # Corpo do e-mail
-    smtp.sendmail(email, destinatario, corpo_email) # Enviando o e-mail
-    print("E-mail enviado com sucesso!") # Mensagem de sucesso
+    smtp.login(email, senha) # Fazendo login no e-mail
+    # mensagem.encode('utf-8') # Codificando a mensagem para o padrão UTF-8
+    smtp.sendmail(email, destinatario, mensagem) # Enviando o e-mail
+
+
+print("E-mail enviado com sucesso!") # Mensagem de sucesso
