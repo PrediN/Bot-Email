@@ -8,7 +8,7 @@
 
 # Importando bibliotecas
 import smtplib
-
+import json
 
 # Declaração de variáveis
 
@@ -16,7 +16,13 @@ email = str(input("Digite o e-mail: ")).strip().lower()
 senha = str(input("Digite a senha do e-mail: ")).strip()
 destinatario = str(input("Digite o e-mail do destinatário: ")).strip().lower()
 assunto = str(input("Digite o assunto: ")).strip()
-mensagem = str(input("Digite a mensagem: ")).strip()
+mensagem = ""
+
+
+# Carregando as informações do arquivo JSON
+
+with open("teste.json", "r") as arquivo:
+    mensagem = json.load(arquivo)
 
 # Construindo o e-mail como uma string
 mensagem = f"From: {email}\nTo: {destinatario}\nSubject: {assunto}\n\n{mensagem}"
