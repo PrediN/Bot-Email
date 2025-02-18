@@ -21,9 +21,9 @@ mensagem = str(input("Digite a mensagem: ")).strip()
 
 # Envio de e-mail
 
-with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
-    smtp.starttls()
-    smtp.login(email, senha)
-    corpo_email = f"Assunto: {assunto}\n\n{mensagem}"
-    smtp.sendmail(email, destinatario, corpo_email)
-    print("E-mail enviado com sucesso!")
+with smtplib.SMTP("smtp.gmail.com", 587) as smtp: # Servidor SMTP do Gmail e o with serve para fechar a conexão automaticamente
+    smtp.starttls() # Iniciando a conexão
+    smtp.login(email, senha) # Fazendo login
+    corpo_email = f"Assunto: {assunto}\n\n{mensagem}" # Corpo do e-mail
+    smtp.sendmail(email, destinatario, corpo_email) # Enviando o e-mail
+    print("E-mail enviado com sucesso!") # Mensagem de sucesso
