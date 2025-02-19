@@ -12,17 +12,17 @@ import json
 
 # Declaração de variáveis
 
-email = str(input("Digite o e-mail: ")).strip().lower()
-senha = str(input("Digite a senha do e-mail: ")).strip()
-destinatario = str(input("Digite o e-mail do destinatário: ")).strip().lower()
+email = "testepedropython@gmail.com"
+senha = "ytxh eoxf txln agtr"
+destinatario = "testepedropython@hotmail.com"
 assunto = str(input("Digite o assunto: ")).strip()
-mensagem = ""
+mensagem = str(input("Digite a mensagem: ")).strip()
 
 
 # Carregando as informações do arquivo JSON
-
-with open("teste.json", "r") as arquivo:
-    mensagem = json.load(arquivo)
+# 
+# with open("teste.json", "r") as arquivo:
+#     mensagem = json.load(arquivo)
 
 # Construindo o e-mail como uma string
 mensagem = f"From: {email}\nTo: {destinatario}\nSubject: {assunto}\n\n{mensagem}"
