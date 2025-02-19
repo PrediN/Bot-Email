@@ -9,31 +9,33 @@
 # Importando bibliotecas
 import smtplib
 import json
+import email.message
 
-# Declaração de variáveis
+# Função para enviar e-mail
+def enviar_email():
 
-email = "testepedropython@gmail.com"
-senha = "ytxh eoxf txln agtr"
-destinatario = "testepedropython@hotmail.com"
-assunto = str(input("Digite o assunto: ")).strip()
-mensagem = str(input("Digite a mensagem: ")).strip()
-
-
-# Carregando as informações do arquivo JSON
-# 
-# with open("teste.json", "r") as arquivo:
-#     mensagem = json.load(arquivo)
-
-# Construindo o e-mail como uma string
-mensagem = f"From: {email}\nTo: {destinatario}\nSubject: {assunto}\n\n{mensagem}"
-
-# Envio de e-mail
-
-with smtplib.SMTP("smtp.gmail.com", 587) as smtp: # Servidor SMTP do Gmail e o with serve para fechar a conexão automaticamente
-    smtp.starttls() # Iniciando a conexão
-    smtp.login(email, senha) # Fazendo login no e-mail
-    # mensagem.encode('utf-8') # Codificando a mensagem para o padrão UTF-8
-    smtp.sendmail(email, destinatario, mensagem) # Enviando o e-mail
+    # Corpo do e-mail
+    corpo_email = """
+    <p><h1>Olá Pedro</h1></p>
+    <p>Segue meu email automatico</p>
+    """
 
 
-print("E-mail enviado com sucesso!") # Mensagem de sucesso
+    # Criando objeto de mensagem
+    msg = email.message.Message()
+    msg['Subject'] = "Assunto"
+    msg['From'] = 'testepedropython@gmail.com'
+    msg['To'] = 'testepedropython@gmail.com'
+    password = 'ytxh eoxf txln agtr'
+    msg.add_header('Content-Type', 'text/html')
+    msg.set_payload(corpo_email)
+
+    # Conexão com servidor SMTP
+    s = smtplib.SMTP('smtp.gmail.com:587')
+    s.starttls()
+    s.login(msg['From'],password)
+    s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+    print('Email enviado')
+    
+if __name__ == "__main__":
+    enviar_email()
