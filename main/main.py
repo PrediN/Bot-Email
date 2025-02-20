@@ -12,6 +12,8 @@ from email.mime.text import MIMEText
 import json
 import subprocess
 
+
+# Função para enviar e-mail
 def enviar_email(remetente, senha, destinatario, assunto):
     """
     Executa o search.py, carrega os resultados do JSON e envia um e-mail.
@@ -26,15 +28,22 @@ def enviar_email(remetente, senha, destinatario, assunto):
 
         # Formatar o corpo do email com os resultados da busca
         corpo_email = f"""
-        <p>Olá!</p>
-        <p>Resultados da busca por '{assunto}':</p>
+        <h2>Olá!</h2>
+        <p>Aqui é o Jason! O Bot das pesquisas!</p>
+        <p>Aqui em baixo tem algumas pesquisas que eu achei online e parecem interessante! <br>
+        Que tal dar uma lida?</p>
         <ul>
         """
         for resultado in resultados_busca:
             corpo_email += f"""
             <li>
-                <a href="{resultado['href']}">{resultado['title']}</a><br>
-                {resultado['body']}
+                <span style="color: #000000;">
+                <b><h3 href="{resultado['href']}">{resultado['title']}</h3></b>
+                <p>{resultado['body']}</p>
+                <a href="{resultado['href']}">{resultado['href']}</a>
+                </span>
+                
+                <br>
             </li>
             """
         corpo_email += "</ul>"
